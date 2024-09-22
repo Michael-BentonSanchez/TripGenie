@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -22,19 +23,19 @@ export class LoginComponent {
     this.authService
       .login(this.loginForm.value.email!, this.loginForm.value.password!)
       .subscribe((result) => {
-        if (result.error) {
-          console.log(result.error.message);
+        if (!result.error) {
+          this.router.navigate(["/home"]); // Navigate to home page when no errors
         } else {
-          console.log('Success');
+          console.log(result.error.message); // log error in console
         }
       });
   }
 
   passwordRecovery() {
-    // navigate to password recovery page
+    this.router.navigate(['recovery']);
   }
 
   signUp() {
-    // navigate to sign up page
+    this.router.navigate(['signup']);
   }
 }

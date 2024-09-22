@@ -12,11 +12,24 @@ import { from, Observable } from 'rxjs';
 })
 export class AuthService {
   private supaBase: SupabaseClient;
+  private currentUser!: string | null;
   constructor() {
     this.supaBase = createClient(
       environment.supabaseUrl,
       environment.supabaseKey
     );
+    this.authStatusListener();
+  }
+
+  authStatusListener(){
+    this.supaBase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_IN"){
+        this.currentUser = session?.user.id!;
+      } else if (event === "SIGNED_OUT") {
+        this.currentUser = null;
+      }
+      // maybe do other elif statements for password recovery and such
+    })
   }
 
   register(
