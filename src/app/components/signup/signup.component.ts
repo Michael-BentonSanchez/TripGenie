@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -8,7 +9,10 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './signup.component.css',
 })
 export class SignupComponent {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
 
   signupForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -21,19 +25,27 @@ export class SignupComponent {
   });
 
   onSubmit() {
-    // console.log(this.signupForm.value.lastname);
     this.authService
       .register(
         this.signupForm.value.email!,
-        this.signupForm.value.password!,
-        this.signupForm.value.firstname!,
-        this.signupForm.value.lastname!
+        this.signupForm.value.password!
+        // this.signupForm.value.firstname!,
+        // this.signupForm.value.lastname!
       )
       .subscribe((result) => {
-        if (result.error) {
-          console.log(result.error.message);
+        if (!result.error) {
+          // console.log('Success');
+          // console.log(result);
+          // need to save user in the database.
+          this.userService.createUser(
+            result.data.user?.id!,
+            this.signupForm.value.email!,
+            this.signupForm.value.password!,
+            this.signupForm.value.firstname!,
+            this.signupForm.value.lastname!
+          );
         } else {
-          console.log('Success');
+          console.log(result.error.message);
         }
       });
   }

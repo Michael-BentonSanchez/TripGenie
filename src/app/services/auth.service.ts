@@ -21,19 +21,19 @@ export class AuthService {
 
   register(
     email: string,
-    password: string,
-    firstName: string,
-    lastName: string
+    password: string
+    // firstName: string,
+    // lastName: string
   ): Observable<AuthResponse> {
     const promise = this.supaBase.auth.signUp({
       email,
       password,
-      options: {
-        data: {
-          firstName,
-          lastName,
-        },
-      },
+      // options: {
+      //   data: {
+      //     firstName,
+      //     lastName,
+      //   },
+      // },
     });
     return from(promise);
   }
