@@ -12,7 +12,9 @@ import { from, Observable } from 'rxjs';
 })
 export class AuthService {
   private supaBase: SupabaseClient;
+
   private currentUser!: string | null;
+
   constructor() {
     this.supaBase = createClient(
       environment.supabaseUrl,
