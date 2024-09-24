@@ -1,0 +1,45 @@
+.container {
+  margin: 1.5rem;
+}
+
+.form-container {
+  width: 50%;
+  margin: 0 auto;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.title-container {
+  text-align: center;
+  padding: 10px;
+}
+
+.email-container {
+  text-align: center;
+  padding: 10px;
+}
+
+.password-container {
+  text-align: center;
+  padding: 10px;
+}
+
+.first-container {
+  text-align: center;
+  padding: 10px;
+}
+
+.last-container {
+  text-align: center;
+  padding: 10px;
+}
+
+.button-container {
+  text-align: center;
+  padding: 10px;
+}
+
+.options-container {
+  text-align: center;
+  padding: 10px;
+}

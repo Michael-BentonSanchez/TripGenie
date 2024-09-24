@@ -1,5 +1,8 @@
 <div class="container">
   <div class="form-container">
+    <div class="title-container">
+      <h2>Sign up</h2>
+    </div>
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
       <div class="email-container">
         <label for="email">Email:</label>
@@ -37,8 +40,13 @@
       </div>
 
       <div class="button-container">
-        <button type="submit" [disabled]="signupForm.invalid">Login</button>
+        <button type="submit" [disabled]="signupForm.invalid">
+          Create Account
+        </button>
       </div>
     </form>
+    <div class="options-container">
+      <button (click)="login()">Back to login</button>
+    </div>
   </div>
 </div>

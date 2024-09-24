@@ -23,15 +23,15 @@ export class AuthService {
     this.authStatusListener();
   }
 
-  authStatusListener(){
+  authStatusListener() {
     this.supaBase.auth.onAuthStateChange((event, session) => {
-      if (event === "SIGNED_IN"){
+      if (event === 'SIGNED_IN') {
         this.currentUser = session?.user.id!;
-      } else if (event === "SIGNED_OUT") {
+      } else if (event === 'SIGNED_OUT') {
         this.currentUser = null;
       }
       // maybe do other elif statements for password recovery and such
-    })
+    });
   }
 
   register(
