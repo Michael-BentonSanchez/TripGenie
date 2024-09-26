@@ -24,7 +24,8 @@ export class LoginComponent {
       .login(this.loginForm.value.email!, this.loginForm.value.password!)
       .subscribe((result) => {
         if (!result.error) {
-          this.router.navigate(["/home"]); // Navigate to home page when no errors
+          this.router.navigate(['/home']); // Navigate to home page when no errors
+          console.log(result.data);
         } else {
           console.log(result.error.message); // log error in console
         }

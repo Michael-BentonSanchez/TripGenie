@@ -54,10 +54,39 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<AuthResponse> {
-    const promise = this.supaBase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    const promise = this.supaBase.auth
+      .signInWithPassword({
+        email,
+        password,
+      })
+      .then((response) => {
+        if (response.data.session) {
+          this.storeJwt(response.data.session.access_token);
+        }
+        return response;
+      });
     return from(promise);
+  }
+
+  // Method for signing out
+  logout(): void {
+    this.supaBase.auth.signOut().then(() => {
+      localStorage.removeItem('jwt');
+    });
+  }
+
+  // Method to add JWT to localStorage
+  storeJwt(token: string): void {
+    localStorage.setItem('jwt', token);
+  }
+
+  // Method to remove JWT from localStorage
+  removeJwt(): void {
+    localStorage.removeItem('jwt');
+  }
+
+  // Method for returning the JWT token
+  getJwt(): string {
+    return localStorage.getItem('jwt')!;
   }
 }
