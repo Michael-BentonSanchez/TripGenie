@@ -31,4 +31,8 @@ export class UserService {
     console.log(error);
     console.log(data);
   }
+
+  getUser(id: string) {
+    console.log(this.supaBase.from('User').select('*').eq('UserID', id));
+  }
 }

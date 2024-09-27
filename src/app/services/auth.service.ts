@@ -34,21 +34,10 @@ export class AuthService {
     });
   }
 
-  register(
-    email: string,
-    password: string
-    // firstName: string,
-    // lastName: string
-  ): Observable<AuthResponse> {
+  register(email: string, password: string): Observable<AuthResponse> {
     const promise = this.supaBase.auth.signUp({
       email,
       password,
-      // options: {
-      //   data: {
-      //     firstName,
-      //     lastName,
-      //   },
-      // },
     });
     return from(promise);
   }
@@ -88,5 +77,9 @@ export class AuthService {
   // Method for returning the JWT token
   getJwt(): string {
     return localStorage.getItem('jwt')!;
+  }
+
+  getCurrentUser(): string {
+    return this.currentUser!;
   }
 }

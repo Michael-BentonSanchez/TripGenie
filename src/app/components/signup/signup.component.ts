@@ -46,6 +46,7 @@ export class SignupComponent {
             this.signupForm.value.firstname!,
             this.signupForm.value.lastname!
           );
+          this.test();
         } else {
           console.log(result.error.message);
         }
@@ -54,5 +55,9 @@ export class SignupComponent {
 
   login() {
     this.router.navigate(['login']);
+  }
+
+  test() {
+    this.userService.getUser(this.authService.getCurrentUser());
   }
 }

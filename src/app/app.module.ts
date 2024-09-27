@@ -6,10 +6,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { RecoveryComponent } from './components/recovery/recovery.component';
-import { JwtInterceptorService } from './interceptor/jwt-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -25,13 +24,7 @@ import { JwtInterceptorService } from './interceptor/jwt-interceptor.service';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptorService,
-      multi: true,
-    },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
