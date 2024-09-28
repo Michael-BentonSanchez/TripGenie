@@ -59,24 +59,7 @@ export class AuthService {
 
   // Method for signing out
   logout(): void {
-    this.supaBase.auth.signOut().then(() => {
-      localStorage.removeItem('jwt');
-    });
-  }
-
-  // Method to add JWT to localStorage
-  storeJwt(token: string): void {
-    localStorage.setItem('jwt', token);
-  }
-
-  // Method to remove JWT from localStorage
-  removeJwt(): void {
-    localStorage.removeItem('jwt');
-  }
-
-  // Method for returning the JWT token
-  getJwt(): string {
-    return localStorage.getItem('jwt')!;
+    this.supaBase.auth.signOut();
   }
 
   getCurrentUser(): string {
