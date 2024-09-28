@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="form-container">
+    <div class="title-container">
+      <h2>Sign up</h2>
+    </div>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="email-container">
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" />
+        <div
+          *ngIf="
+            signupForm.get('email')?.invalid && signupForm.get('email')?.touched
+          "
+        >
+          <!-- Error message for invalid email-->
+        </div>
+      </div>
+
+      <div class="password-container">
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password" />
+        <div
+          *ngIf="
+            signupForm.get('password')?.invalid &&
+            signupForm.get('password')?.touched
+          "
+        >
+          <!-- Error message for invalid password -->
+        </div>
+      </div>
+
+      <div class="first-container">
+        <label for="firstname">First Name:</label>
+        <input type="firstname" id="firstname" formControlName="firstname" />
+      </div>
+
+      <div class="last-container">
+        <label for="lastname">Last Name:</label>
+        <input type="lastname" id="lastname" formControlName="lastname" />
+      </div>
+
+      <div class="button-container">
+        <button type="submit" [disabled]="signupForm.invalid">
+          Create Account
+        </button>
+      </div>
+    </form>
+    <div class="options-container">
+      <button (click)="login()">Back to login</button>
+    </div>
+  </div>
+  <div class="error-container" *ngIf="errorMessage">
+    <h2>This email is already in use for an active account!</h2>
+  </div>
+</div>

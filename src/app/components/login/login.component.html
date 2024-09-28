@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="form-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="email-container">
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" />
+        <div
+          *ngIf="
+            loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+          "
+        >
+          <!-- Error message for invalid email-->
+        </div>
+      </div>
+
+      <div class="password-container">
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password" />
+        <div
+          *ngIf="
+            loginForm.get('password')?.invalid &&
+            loginForm.get('password')?.touched
+          "
+        >
+          <!-- Error message for invalid password -->
+        </div>
+      </div>
+      <div class="button-container">
+        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+      </div>
+    </form>
+    <div class="options-container">
+      <button (click)="passwordRecovery()">Forgot Password?</button>
+      <button (click)="signUp()">Sign up</button>
+    </div>
+  </div>
+  <div class="error-container" *ngIf="errorMessage">
+    <h2>Incorrect credentials entered!</h2>
+  </div>
+</div>
