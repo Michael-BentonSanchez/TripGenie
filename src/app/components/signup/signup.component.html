@@ -39,7 +39,7 @@
         <input type="lastname" id="lastname" formControlName="lastname" />
       </div>
 
-      <div class="button-container"> 
+      <div class="button-container">
         <button type="submit" [disabled]="signupForm.invalid">
           Create Account
         </button>
@@ -48,5 +48,8 @@
     <div class="options-container">
       <button (click)="login()">Back to login</button>
     </div>
+  </div>
+  <div class="error-container" *ngIf="errorMessage">
+    <h2>This email is already in use for an active account!</h2>
   </div>
 </div>

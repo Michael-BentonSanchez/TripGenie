@@ -6,6 +6,7 @@ import {
 } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
 import { from, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class AuthService {
 
   private currentUser!: string | null;
 
-  constructor() {
+  constructor(private router: Router) {
     this.supaBase = createClient(
       environment.supabaseUrl,
       environment.supabaseKey
@@ -43,26 +44,26 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<AuthResponse> {
-    const promise = this.supaBase.auth
-      .signInWithPassword({
-        email,
-        password,
-      })
-      .then((response) => {
-        if (response.data.session) {
-          this.storeJwt(response.data.session.access_token);
-        }
-        return response;
-      });
+    const promise = this.supaBase.auth.signInWithPassword({
+      email,
+      password,
+    });
     return from(promise);
   }
 
   // Method for signing out
   logout(): void {
     this.supaBase.auth.signOut();
+    this.router.navigate(['login']);
   }
 
+  // method for getting current users id
   getCurrentUser(): string {
     return this.currentUser!;
+  }
+
+  // method for setting current user id
+  setCurrentUser(id: string): void {
+    this.currentUser = id;
   }
 }

@@ -34,4 +34,7 @@
       <button (click)="signUp()">Sign up</button>
     </div>
   </div>
+  <div class="error-container" *ngIf="errorMessage">
+    <h2>Incorrect credentials entered!</h2>
+  </div>
 </div>

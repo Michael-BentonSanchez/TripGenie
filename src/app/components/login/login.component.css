@@ -35,3 +35,9 @@ button {
   display: flex;
   justify-content: space-evenly;
 }
+
+.error-container {
+  text-align: center;
+  border: 2px solid black;
+  margin: 2rem 15% 0 15%;
+}

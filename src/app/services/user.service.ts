@@ -28,8 +28,6 @@ export class UserService {
       FirstName: FirstName,
       LastName: lastName,
     });
-    console.log(error);
-    console.log(data);
   }
 
   getUser(id: string) {

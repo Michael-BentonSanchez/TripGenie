@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
+  errorMessage!: string | null;
+
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -24,10 +26,9 @@ export class LoginComponent {
       .login(this.loginForm.value.email!, this.loginForm.value.password!)
       .subscribe((result) => {
         if (!result.error) {
-          this.router.navigate(['/home']); // Navigate to home page when no errors
-          console.log(result.data);
+          this.router.navigate(['home']); // Navigate to home page when no errors
         } else {
-          console.log(result.error.message); // log error in console
+          this.errorMessage = result.error.message;
         }
       });
   }

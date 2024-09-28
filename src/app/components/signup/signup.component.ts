@@ -16,6 +16,8 @@ export class SignupComponent {
     private router: Router
   ) {}
 
+  errorMessage!: string | null;
+
   signupForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -36,9 +38,6 @@ export class SignupComponent {
       )
       .subscribe((result) => {
         if (!result.error) {
-          // console.log('Success');
-          // console.log(result);
-          // need to save user in the database.
           this.userService.createUser(
             result.data.user?.id!,
             this.signupForm.value.email!,
@@ -46,18 +45,18 @@ export class SignupComponent {
             this.signupForm.value.firstname!,
             this.signupForm.value.lastname!
           );
-          this.test();
+          this.authService.setCurrentUser(result.data.user?.id!);
+          this.router.navigate(['home']);
+          if (this.errorMessage) {
+            this.errorMessage = null;
+          }
         } else {
-          console.log(result.error.message);
+          this.errorMessage = result.error.message;
         }
       });
   }
 
   login() {
     this.router.navigate(['login']);
-  }
-
-  test() {
-    this.userService.getUser(this.authService.getCurrentUser());
   }
 }
