@@ -1,1 +1,13 @@
-<p>navbar works!</p>
+<div class="container" *ngIf="authService.IsUserAuthenticated()">
+  <div class="nav-container">
+    <nav>
+      <li><a routerLink="home" routerLinkActive="active">Home</a></li>
+      <li>
+        <a routerLink="generate" routerLinkActive="active"
+          >Generate Itinerary</a
+        >
+      </li>
+      <li><a routerLink="profile" routerLinkActive="active">Profile</a></li>
+    </nav>
+  </div>
+</div>

@@ -81,7 +81,6 @@ export class AuthService {
         lastName: data[0]!.LastName,
       };
     }
-    console.log(this.currentUser);
   }
 
   IsUserAuthenticated(): boolean {
