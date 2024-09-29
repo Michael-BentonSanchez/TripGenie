@@ -7,6 +7,7 @@ import { SupabaseClient, createClient } from '@supabase/supabase-js';
 })
 export class UserService {
   private supaBase: SupabaseClient;
+
   constructor() {
     this.supaBase = createClient(
       environment.supabaseUrl,
@@ -30,7 +31,11 @@ export class UserService {
     });
   }
 
-  getUser(id: string) {
-    console.log(this.supaBase.from('User').select('*').eq('UserID', id));
-  }
+  // async getUser(id: string) {
+  //   const { data, error } = await this.supaBase
+  //     .from('User')
+  //     .select()
+  //     .eq('UserID', id);
+  //   return data![0];
+  // }
 }

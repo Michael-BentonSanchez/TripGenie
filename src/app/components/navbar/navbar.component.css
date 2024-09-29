@@ -1,0 +1,38 @@
+.container {
+  background-color: rgb(54, 182, 54);
+  padding: 20px;
+  justify-content: center;
+  display: flex;
+}
+
+.nav-container {
+  width: 50%;
+  display: flex;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+li {
+  list-style-type: none;
+}
+
+a,
+a:visited {
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: gray;
+}
+
+.active {
+  color: blue;
+  border-bottom: 1px solid black;
+}

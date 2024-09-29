@@ -26,6 +26,7 @@ export class LoginComponent {
       .login(this.loginForm.value.email!, this.loginForm.value.password!)
       .subscribe((result) => {
         if (!result.error) {
+          this.authService.setCurrentUser(result.data.user?.id!);
           this.router.navigate(['home']); // Navigate to home page when no errors
         } else {
           this.errorMessage = result.error.message;

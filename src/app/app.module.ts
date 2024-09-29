@@ -9,6 +9,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { RecoveryComponent } from './components/recovery/recovery.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { GenerateComponent } from './components/generate/generate.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,9 @@ import { RecoveryComponent } from './components/recovery/recovery.component';
     SignupComponent,
     HomeComponent,
     RecoveryComponent,
+    NavbarComponent,
+    ProfileComponent,
+    GenerateComponent,
   ],
   imports: [
     BrowserModule,
