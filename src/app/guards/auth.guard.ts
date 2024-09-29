@@ -10,15 +10,17 @@ import { Injectable } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
-  providedIn: 'root', // This makes it a service available globally
+  providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
-    const user = this.authService.getCurrentUser();
+    // const user = this.authService.getCurrentUser();
+    const isAuthenticated = this.authService.IsUserAuthenticated();
 
-    if (user) {
+    if (isAuthenticated) {
+      // was user in if statement
       return true;
     } else {
       this.router.navigate(['login']);

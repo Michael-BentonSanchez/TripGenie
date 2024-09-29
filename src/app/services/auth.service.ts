@@ -7,6 +7,7 @@ import {
 import { environment } from '../../environments/environment';
 import { from, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { User } from '../models/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,9 @@ import { Router } from '@angular/router';
 export class AuthService {
   private supaBase: SupabaseClient;
 
-  private currentUser!: string | null;
+  // private currentUser!: string | null;
+  private currentUser!: User;
+  private isAuthenticated!: boolean;
 
   constructor(private router: Router) {
     this.supaBase = createClient(
@@ -27,9 +30,9 @@ export class AuthService {
   authStatusListener() {
     this.supaBase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN') {
-        this.currentUser = session?.user.id!;
+        this.isAuthenticated = true;
       } else if (event === 'SIGNED_OUT') {
-        this.currentUser = null;
+        this.isAuthenticated = false;
       }
       // maybe do other elif statements for password recovery and such
     });
@@ -58,12 +61,30 @@ export class AuthService {
   }
 
   // method for getting current users id
-  getCurrentUser(): string {
+  getCurrentUser(): User {
+    // was returning string
     return this.currentUser!;
   }
 
   // method for setting current user id
-  setCurrentUser(id: string): void {
-    this.currentUser = id;
+  async setCurrentUser(id: string): Promise<void> {
+    const { data, error } = await this.supaBase
+      .from('User')
+      .select()
+      .eq('UserID', id);
+    if (!error) {
+      this.currentUser = {
+        id: data[0]!.UserID,
+        email: data[0]!.Email,
+        password: data[0]!.Password,
+        firstName: data[0]!.FirstName,
+        lastName: data[0]!.LastName,
+      };
+    }
+    console.log(this.currentUser);
+  }
+
+  IsUserAuthenticated(): boolean {
+    return this.isAuthenticated;
   }
 }

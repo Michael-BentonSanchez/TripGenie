@@ -30,12 +30,7 @@ export class SignupComponent {
 
   onSubmit() {
     this.authService
-      .register(
-        this.signupForm.value.email!,
-        this.signupForm.value.password!
-        // this.signupForm.value.firstname!,
-        // this.signupForm.value.lastname!
-      )
+      .register(this.signupForm.value.email!, this.signupForm.value.password!)
       .subscribe((result) => {
         if (!result.error) {
           this.userService.createUser(
