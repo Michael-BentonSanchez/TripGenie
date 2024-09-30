@@ -12,6 +12,8 @@ import { RecoveryComponent } from './components/recovery/recovery.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { GenerateComponent } from './components/generate/generate.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { GenerateComponent } from './components/generate/generate.component';
     NavbarComponent,
     ProfileComponent,
     GenerateComponent,
+    SettingsComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

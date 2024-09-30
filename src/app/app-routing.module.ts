@@ -7,14 +7,16 @@ import { RecoveryComponent } from './components/recovery/recovery.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ProfileComponent } from './components/profile/profile.component';
 import { GenerateComponent } from './components/generate/generate.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'recovery', component: RecoveryComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent }, // , canActivate: [AuthGuard]
   { path: 'generate', component: GenerateComponent, canActivate: [AuthGuard] },
+  { path: 'settings', component: SettingsComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];
