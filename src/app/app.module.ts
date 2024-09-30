@@ -14,6 +14,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { GenerateComponent } from './components/generate/generate.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -33,8 +35,9 @@ import { LogoutComponent } from './components/logout/logout.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatDialogModule,
   ],
-  providers: [],
+  providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
